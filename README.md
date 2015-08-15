@@ -47,6 +47,7 @@ Please make sure that you install the following packages on your controller node
 Usage:
 -----
 ceilometer_monthly_report.py -h
+```
 usage: ceilometer_monthly_report.py [-h] [--os-auth_url URL]
                                     [--os-username OS_USERNAME]
                                     [--os-password OS_PASSWORD]
@@ -65,5 +66,6 @@ optional arguments:
   --os-tenant_name OS_TENANT_NAME
                         Tenant name for Keystone
   --filename FILE       name of the output csv file
+```
 
 In general you can either give the script all needed options like username, password, tenant name and authentication URL at script runtime or simply source an appropriate keystone file with all needed data inside. The script would then use appropriate environment variables. As mentioned above please make sure that the path where you want to save the CSV file still exists.
