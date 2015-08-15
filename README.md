@@ -1,42 +1,40 @@
 # ceilometer_python_monthly_report
 
-Description:
-------------
+#Description:
 Ceilometer monthly report Python script which uses Python Ceilometerclient to create statistics for each OpenStack instance running in a project regardless if it is still avtive, shut off ot deleted. A CSV report can be created on a monthly basis.
 
-About this script:
-------------------
+#About this script:
 - Author: Frank Reimer
 - Version: 1.0
 - Creation Date: 2015-08-10
 
-Tested with:
-------------
+#Tested with:
 This script was developed in a Red Hat Enterprise Linux OpenStack 6 (Juno) environment and was tested with the following Python clients:
 - python-novaclient-2.20.0-1.el7ost.noarch
 - python-keystoneclient-0.11.1-1.el7ost.noarch
 - python-ceilometerclient-1.0.12-1.el7ost.noarch
 
-Prerequisites:
---------------
+#Prerequisites:
 - Make sure that your admin user is member of each project with admin rights.
 - Make sure the path where you want to save your CSV file still exists
-- You need to configure the following options in /etc/ceilometer/ceilometer.conf on your Nova compute nodes to get statistics for VCPUS, Memory, Root Disk Size and Ephemeral Disk Size:
+- You need to configure the following options in **/etc/nova/nova.conf** on your Nova compute nodes to get statistics for VCPUS, Memory, Root Disk Size and Ephemeral Disk Size:
 ```
-	=> instance_usage_audit = true
-	=> instance_usage_audit_period = hour
-	=> notify_on_state_change = vm_and_task_state
-	=> notification_driver=ceilometer.compute.nova_notifier
+	[DEFAULT]
+	...
+	instance_usage_audit = true
+	instance_usage_audit_period = hour
+	notify_on_state_change = vm_and_task_state
+	notification_driver=ceilometer.compute.nova_notifier
+	notification_driver=nova.openstack.common.notifier.rpc_notifier
+	...
 ```
-	=> notification_driver=nova.openstack.common.notifier.rpc_notifier
    Now restart the following services on your Nova compute nodes:
 ```
-	=> openstack-ceilometer-compute
-	=> openstack-nova-compute
+	openstack-ceilometer-compute
+	openstack-nova-compute
 ```
 
-Required packages:
-------------------
+#Required packages:
 Please make sure that you install the following packages on your controller nodes or wherever you want to start this script to collect appropriate statistics:
 - python-nova
 - python-novaclient
@@ -48,8 +46,7 @@ Please make sure that you install the following packages on your controller node
 - python-ceilometerclient
 - python-ceilometerclient-doc
 
-Usage:
------
+#Usage:
 ceilometer_monthly_report.py -h
 ```
 usage: ceilometer_monthly_report.py [-h] [--os-auth_url URL]
