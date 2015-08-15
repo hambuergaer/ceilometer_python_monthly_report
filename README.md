@@ -1,7 +1,7 @@
 # ceilometer_python_monthly_report
 
 #Description:
-Ceilometer monthly report Python script which uses Python Ceilometerclient to create statistics for each OpenStack instance running in a project regardless if it is still avtive, shut off ot deleted. A CSV report can be created on a monthly basis.
+Ceilometer monthly report Python script which uses Python Ceilometerclient to create statistics for each OpenStack instance running in a project regardless if it is still active, shut off ot deleted. A CSV report can be created on a monthly basis. If you for example start this script on Aug. 15 at 6:00 PM the script will automatically collect all needed statistics from the beginning of the according month till the date and time you started the script.
 
 #About this script:
 - Author: Frank Reimer
