@@ -21,6 +21,15 @@ Prerequisites:
 --------------
 - Make sure that your admin user is member of each project with admin rights.
 - Make sure the path where you want to save your CSV file still exists
+- You need to configure the following options in /etc/ceilometer/ceilometer.conf on your Nova compute nodes to get statistics for VCPUS, Memory, Root Disk Size and Ephemeral Disk Size:
+	=> instance_usage_audit = true
+	=> instance_usage_audit_period = hour
+	=> notify_on_state_change = vm_and_task_state
+	=> notification_driver=ceilometer.compute.nova_notifier
+	=> notification_driver=nova.openstack.common.notifier.rpc_notifier
+   Now restart the following services on your Nova compute nodes:
+	=> openstack-ceilometer-compute
+	=> openstack-nova-compute
 
 Required packages:
 ------------------
